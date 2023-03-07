@@ -32,7 +32,7 @@ GIVEN a weather dashboard with form inputs
 
 ## Website Link
 
-[Weather Tracking]()
+[Hotels On Demand]()
 
 ## Screen Shots
 
