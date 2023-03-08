@@ -1,6 +1,6 @@
-# project-1
+# Hotels-On-Demand
 
-# Hotels On Demand
+## project-1
 
 ## Description
 
