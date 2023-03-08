@@ -8,6 +8,8 @@ This application will help the user that is traveling find a hotel for their des
 
 ## Usage
 
+The user will be able to use the application to find a hotel in the city they are traveling too.
+
 ## License
 
 Please refer to the LICENSE in the repo.
@@ -16,17 +18,14 @@ Please refer to the LICENSE in the repo.
 
 GIVEN I am taking a trip I want to know the best places to eat near the hotel.
 
-**WHEN I**
-*THEN I am*
+**WHEN I am load the application**
+*THEN I am able to search by city and find a hotel I can use*
 
-**WHEN I**
-*THEN I am*
+**WHEN I find a hotel**
+*THEN I am able to search nearby resturants that I can eat at*
 
-**WHEN I**
-*THEN I am*
-
-**WHEN I**
-*THEN I am*
+**WHEN I find a resturant and/or I like**
+*THEN I am able to favorite it and it is saved in local storage*
 
 ## Repository Link
 
