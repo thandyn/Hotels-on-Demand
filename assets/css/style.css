@@ -1,0 +1,61 @@
+*{
+
+}
+
+nav {
+  height: 100px;
+}
+
+.header-nav {
+  margin-bottom: 30px;
+}
+
+.nav-icon {
+
+}
+
+.search-container {
+  padding: 20px;
+  background-color: red;
+}
+
+.card-container {
+  padding: 20px;
+  background-color: aqua;
+  height: 1000px;
+}
+
+.container {
+  background-color: yellow;
+  padding: 20px;
+}
+
+.hotel-container{
+  background-color: green;
+  padding: 20px;
+  
+}
+
+.rest-container {
+  background-color: purple;
+  padding: 20px;
+}
+
+.rest-card {
+  background-color: beige;
+  padding: 20px;
+}
+
+.hotel-card {
+  background-color: blue;
+  padding: 20px;
+  display: block;
+}
+
+.card-header {
+  display: flex;
+}
+
+.card-footer {
+  justify-content: flex-end;
+}
