@@ -5,8 +5,85 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-  
+  <header>
+    <!-- nav -->
+    <nav class="navbar is-success" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="#index.html">
+          <img class="nav-icon" src="./assets/images/hotel icon.png" width="150%" height="150%">
+        </a>
+      </div>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item">
+            Home
+          </a>
+          <a class="navbar-item">
+            Favorites
+          </a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+    <!-- text input -->
+    <div class="search-container">
+      <div class="field">
+        <label class="label">City</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Search for a City">
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link is-success">Submit</button>
+        </div>
+      </div>
+    </div>
+
+<!-- containers -->
+
+    <div class="tile card-container">
+      <div class="tile container is-12 column">
+        <div class="tile hotel-container">
+          <div class="tile hotel-card is-12 column ">
+            <div class="card is-offset-one-quarter column">
+              <header class="card-header">
+                <p class="card-header-title ">
+                  Clsdk
+                </p>
+              </header>
+            </div>
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img src="https://bulma.io/images/placeholders/640x480.png" alt="Placeholder image">
+                </figure>
+              </div>
+            </div>
+            <div class="card">
+              <footer class="card-footer">
+                <button class="button">Button</button>
+                <button class="button">Button</button>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <div class="tile rest-container " >
+          <div class="tile  rest-card is-12 column  ">
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
 </body>
 </html>
