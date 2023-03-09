@@ -12,40 +12,31 @@
 }
 
 .search-container {
-  background-color: red;
+
 }
 
 .card-container {
-  background-color: aqua;
-  height: 500px;
+
 }
 
-.container {
-  background-color: yellow;
-  padding: 20px;
-  justify-content: center;
-}
 
 .hotel-container{
-  background-color: green;
-  padding: 20px;
+
   
 }
 
 .rest-container {
-  background-color: purple;
-  padding: 20px;
-}
 
-.rest-card {
-  background-color: pink;
-  padding: 20px;
 }
 
 .hotel-card {
-  background-color: blue;
-  padding: 20px;
+  background-color: white;
+  margin-bottom: 10px;
+}
 
+.rest-card {
+  background-color: white;
+  margin-bottom: 10px;
 }
 
 .card-header {
