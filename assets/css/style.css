@@ -2,32 +2,28 @@
 
 }
 
-nav {
-  height: 100px;
-}
 
 .header-nav {
   margin-bottom: 30px;
 }
 
 .nav-icon {
-
+  max-height: 70px;
 }
 
 .search-container {
-  padding: 20px;
   background-color: red;
 }
 
 .card-container {
-  padding: 20px;
   background-color: aqua;
-  height: 1000px;
+  height: 500px;
 }
 
 .container {
   background-color: yellow;
   padding: 20px;
+  justify-content: center;
 }
 
 .hotel-container{
@@ -42,14 +38,14 @@ nav {
 }
 
 .rest-card {
-  background-color: beige;
+  background-color: pink;
   padding: 20px;
 }
 
 .hotel-card {
   background-color: blue;
   padding: 20px;
-  display: block;
+
 }
 
 .card-header {
@@ -59,3 +55,4 @@ nav {
 .card-footer {
   justify-content: flex-end;
 }
+
