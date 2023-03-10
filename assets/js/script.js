@@ -27,23 +27,24 @@ document.getElementById("submit").addEventListener("click", function (e) {
       for (var i = 0; i < response.businesses.length; i++) {
         var nameEl = document.createElement("h1");
         console.log(response.businesses[i].name);
-
         var locationEl = document.createElement("h2");
         var phoneEl = document.createElement("p");
-        // var imgEl = document.createElement ("");
         var urlEl = document.createElement("p");
 
-        nameEl.textContent = response.businesses[i].name;
+        var imgEl = document.createElement("img");
+        var imgUrl = `https://s3-media1.fl.yelpcdn.com/bphoto/${response.businesses[i].image_url}.png`;
+        imgEl.attr("src", imgUrl);
 
-        locationEl.textContent =
+        nameEl.textContent = response.businesses[i].name;
+        locationEl.textContent = 'Address: ' +
           response.businesses[i].location.display_address[0]  + " " +
           response.businesses[i].location.display_address[1];
+        phoneEl.textContent = ('Phone Number: '+ response.businesses[i].phone)
+        urlEl.textContent = ('Website: '+ response.businesses[i].url)
 
-        phoneEl.textContent = response.businesses[i].phone
-        urlEl.textContent = response.businesses[i].url
-        // imgEl.textContent = response.businesses[i].
+        imgEl.textContent = response.businesses[i].image_url
 
-        info.append(nameEl, locationEl, phoneEl, urlEl);
+        info.append(nameEl, locationEl, phoneEl, urlEl, imgEl);
       }
     })
     // info=businesses
