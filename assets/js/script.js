@@ -312,8 +312,11 @@ function renderHotelEl(busiData) {
   hotelContainer.innerHTML = "";
   for (var i = 0; i < busiData.length; i++) {
     var name = busiData[i].name;
-    var location = busiData[i].location.address1;
-    var phone = busiData[i].phone;
+    var location =
+      busiData[i].location.display_address[0] + ", " +
+      busiData[i].location.display_address[1];
+      // busiData[i].location.display_address[2];
+    var phone = busiData[i].display_phone;
     var url = busiData[i].url;
     var img = busiData[i].image_url;
 
@@ -347,8 +350,11 @@ function renderBackupHotelEl(backupData) {
   hotelContainer.innerHTML = "";
   for (var i = 0; i < backupData.businesses.length; i++) {
     var name = backupData.businesses[i].name;
-    var location = backupData.businesses[i].location.address1;
-    var phone = backupData.businesses[i].phone;
+    var location =
+      backupData[i].location.display_address[0] + ", " +
+      backupData[i].location.display_address[1] ;
+      // backupData[i].location.display_address[2];
+    var phone = busiData[i].display_phone;
     var url = backupData.businesses[i].url;
     var img = backupData.businesses[i].image_url;
 
