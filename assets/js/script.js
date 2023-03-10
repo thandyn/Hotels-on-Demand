@@ -307,7 +307,6 @@ var backupData = {
 };
 
 // function renderHotelEl(){
-
 // }
 
 document.getElementById("submit").addEventListener("click", function (e) {
