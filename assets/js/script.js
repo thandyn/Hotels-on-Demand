@@ -305,9 +305,29 @@ backupData = {
     },
   },
 };
+var restaurants = [];
+var hotels = [];
+
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("favHotels")) {
+    var index = parseInt(event.target.dataset.index);
+    console.log(hotels[index]);
+    var favoriteHotel = hotels[index];
+    // store in local storage here ...
+  }
+});
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("favRestaurant")) {
+    var index = parseInt(event.target.dataset.index);
+    console.log(restaurants[index]);
+    var favoriteRestaurant = restaurants[index];
+    // store in local storage here...
+  }
+});
 
 function renderHotelEl(busiData) {
   console.log(busiData);
+  hotels = busiData;
   var hotelContainer = document.getElementById("hotel-container");
   hotelContainer.innerHTML = "";
   for (var i = 0; i < busiData.length; i++) {
@@ -334,7 +354,7 @@ function renderHotelEl(busiData) {
     <p>${phone}</p>
     </div>
     <footer class="card-footer">
-    <button class="is-fullwidth is-medium button is-success">Favorite</button>
+    <button class="favHotels is-fullwidth is-medium button is-success" data-index="${i}">Favorite</button>
     <a href="${url}" class="is-fullwidth is-medium button is-success">Info</a>
     </footer>`;
     hotelContainer.appendChild(hotelEl);
@@ -343,6 +363,7 @@ function renderHotelEl(busiData) {
 
 function renderBackupHotelEl(backupData) {
   console.log(backupData);
+  hotels = backupData.businesses;
   var hotelContainer = document.getElementById("hotel-container");
   hotelContainer.innerHTML = "";
   for (var i = 0; i < backupData.businesses.length; i++) {
@@ -369,7 +390,7 @@ function renderBackupHotelEl(backupData) {
     <p>${phone}</p>
     </div>
     <footer class="card-footer">
-    <button class="is-fullwidth is-medium button is-success">Favorite</button>
+    <button class="favHotels is-fullwidth is-medium button is-success" data-index="${i}">Favorite</button>
     <a href="${url}" class="is-fullwidth is-medium button is-success">Info</a>
     </footer>`;
     hotelContainer.appendChild(hotelEl);
@@ -378,6 +399,7 @@ function renderBackupHotelEl(backupData) {
 
 function renderRestEl(data) {
   console.log(data);
+  restaurants = data;
   var restContainer = document.getElementById("rest-container");
   restContainer.innerHTML = "";
   for (var i = 0; i < data.length; i++) {
@@ -411,7 +433,7 @@ function renderRestEl(data) {
     <p>${phone}</p>
     </div>
     <footer class="card-footer">
-    <button class="is-fullwidth is-medium button is-success">Favorite</button>
+    <button class="favRestaurant is-fullwidth is-medium button is-success" data-index="${i}">Favorite</button>
     <a href="${url}" class="is-fullwidth is-medium button is-success">Info</a>
     </footer>`;
     restContainer.appendChild(restEl);
@@ -446,6 +468,9 @@ document.getElementById("submit").addEventListener("click", function (e) {
       console.error(err);
       console.log("Loading Backup");
       renderBackupHotelEl(backupData);
+      var lat = backupData.businesses[0].coordinates.latitude;
+      var lon = backupData.businesses[0].coordinates.longitude;
+      fetchRestaurant(lat, lon);
     });
 });
 
