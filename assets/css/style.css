@@ -54,8 +54,11 @@
 }
 
 h3 {
-  font-size: 50px;
-  font-weight: 100;
+  font-size: 30px;
+  font-weight: 50;
   text-align:center;
-  padding: 20px;
+  padding: 10px;
+  background-color: #48C78E;
+  color: #FFFFFF;
+  border-bottom: 10px;
 }
