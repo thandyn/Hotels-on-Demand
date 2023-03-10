@@ -1,6 +1,6 @@
-var info = document.getElementById("card-container");
-
-var backupData = {
+var lat = "";
+var lon = "";
+backupData = {
   businesses: [
     {
       id: "ApylrCaVVcviLblyLF7JGA",
@@ -306,17 +306,86 @@ var backupData = {
   },
 };
 
+function renderHotelEl(busiData) {
+  console.log(busiData);
+  var hotelContainer = document.getElementById("hotel-container");
+  hotelContainer.innerHTML = "";
+  for (var i = 0; i < busiData.length; i++) {
+    var name = busiData[i].name;
+    var location = busiData[i].location.address1;
+    var phone = busiData[i].phone;
+    var url = busiData[i].url;
+    var img = busiData[i].image_url;
+
+    var hotelEl = document.createElement("div");
+    hotelEl.className = "hotel-card";
+    hotelEl.innerHTML = `
+    <header class="card-header">
+    <p class="card-header-title">
+    ${name}
+    </p>
+    </header>
+    <figure class="image is-4by3">
+    <img src="${img}" alt="hotel image">
+    </figure>
+    <div class="card-content">
+    <div class="content">
+    <p>${location}</p>
+    <p>${phone}</p>
+    </div>
+    <footer class="card-footer">
+    <button class="is-fullwidth is-medium button is-success">Favorite</button>
+    <a href="${url}" class="is-fullwidth is-medium button is-success">Info</a>
+    </footer>`;
+    hotelContainer.appendChild(hotelEl);
+  }
+}
+
+function renderBackupHotelEl(backupData) {
+  console.log(backupData);
+  var hotelContainer = document.getElementById("hotel-container");
+  hotelContainer.innerHTML = "";
+  for (var i = 0; i < backupData.businesses.length; i++) {
+    var name = backupData.businesses[i].name;
+    var location = backupData.businesses[i].location.address1;
+    var phone = backupData.businesses[i].phone;
+    var url = backupData.businesses[i].url;
+    var img = backupData.businesses[i].image_url;
+
+    var hotelEl = document.createElement("div");
+    hotelEl.className = "hotel-card";
+    hotelEl.innerHTML = `
+    <header class="card-header">
+    <p class="card-header-title">
+    ${name}
+    </p>
+    </header>
+    <figure class="image is-4by3">
+    <img src="${img}" alt="hotel image">
+    </figure>
+    <div class="card-content">
+    <div class="content">
+    <p>${location}</p>
+    <p>${phone}</p>
+    </div>
+    <footer class="card-footer">
+    <button class="is-fullwidth is-medium button is-success">Favorite</button>
+    <a href="${url}" class="is-fullwidth is-medium button is-success">Info</a>
+    </footer>`;
+    hotelContainer.appendChild(hotelEl);
+  }
+}
+
 // function renderHotelEl(){
+
 // }
 
 document.getElementById("submit").addEventListener("click", function (e) {
-  // e;
+  e.preventDefault();
   var cityInput = document.getElementById("search-value").value;
-  console.log(cityInput);
   if (!cityInput) {
     return;
   }
-
   fetch(
     `https://proxy.cors.sh/https://api.yelp.com/v3/businesses/search?location=${cityInput}&term=hotels&sort_by=best_match&limit=10`,
     {
@@ -332,90 +401,30 @@ document.getElementById("submit").addEventListener("click", function (e) {
       for (var i = 0; i < response.businesses.length; i++) {
         var nameEl = document.createElement("h1");
         console.log(response.businesses[i].name);
+
         var locationEl = document.createElement("h2");
         var phoneEl = document.createElement("p");
+        // var imgEl = document.createElement ("");
         var urlEl = document.createElement("p");
 
-        // var imgEl = document.createElement("img");
-        // var imgUrl = `https://s3-media1.fl.yelpcdn.com/bphoto/${response.businesses[i].image_url}.png`;
-        // imgEl.attr("src", imgUrl);
-
         nameEl.textContent = response.businesses[i].name;
-        locationEl.textContent =
-          "Address: " +
-          response.businesses[i].location.display_address[0] +
-          " " +
-          response.businesses[i].location.display_address[1];
-        phoneEl.textContent = "Phone Number: " + response.businesses[i].phone;
-        urlEl.textContent = "Website: " + response.businesses[i].url;
 
-        // imgEl.textContent = response.businesses[i].image_url
+        locationEl.textContent =
+          response.businesses[i].location.display_address[0]  + " " +
+          response.businesses[i].location.display_address[1];
+
+        phoneEl.textContent = response.businesses[i].phone
+        urlEl.textContent = response.businesses[i].url
+        // imgEl.textContent = response.businesses[i].
 
         info.append(nameEl, locationEl, phoneEl, urlEl);
       }
     })
     // info=businesses
-    .catch((err) => {
-      console.error(err);
-      console.log("Loading Backup");
-      for (var i = 0; i < backupData.businesses.length; i++) {
-        var nameEl = document.createElement("h1");
-        console.log(backupData.businesses[i].name);
-        var locationEl = document.createElement("h2");
-        var phoneEl = document.createElement("p");
-        var urlEl = document.createElement("p");
-
-        // var imgEl = document.createElement("img");
-        // var imgUrl = `https://s3-media1.fl.yelpcdn.com/bphoto/${backupData.businesses[i].image_url}.png`;
-        // imgEl.attr("src", imgUrl);
-
-        nameEl.textContent = backupData.businesses[i].name;
-        locationEl.textContent =
-          "Address: " +
-          backupData.businesses[i].location.display_address[0] +
-          " " +
-          backupData.businesses[i].location.display_address[1];
-        phoneEl.textContent = "Phone Number: " + backupData.businesses[i].phone;
-        urlEl.textContent = "Website: " + backupData.businesses[i].url;
-
-        // imgEl.textContent = response.businesses[i].image_url
-
-        info.append(nameEl, locationEl, phoneEl, urlEl);
-      }
-    });
+    .catch((err) => console.error(err));
 });
 
-// function renderHotelEl(response.businesses){
-//   for (var i = 0; i < response.business.length; i++)
-//     var name = response.businesses[i].name;
-//     var location = response.businesses[i].location;
-//     var phone = response.businesses[i].phone;
-//     var img = response.businesses[i].image_url;
-//     var url = response.businesses[i].url;
-
-//     var hotelEl = document.createElement.("div")
-//     hotelEl.classNaame = "hotel-card";
-//     hotelEl.innerHTML =
-//                 <header class="card-header">
-//                   <p class="card-header-title">
-//                     ${name}
-//                   </p>
-//                 </header>
-//                 <figure class="image is-4by3">
-//                   <img src="${img}" alt="hotel image">
-//                 </figure>
-//                 <div class="card-content">
-//                 <div class="content">
-//                   <p>${location}</p>
-//                   <p>${phone}</p>
-//                 </div>
-//                 <footer class="card-footer">
-//                   <button class="is-fullwidth is-medium button is-success">Favorite</button>
-//                   <button class="is-fullwidth is-medium button is-success">Info</button>
-//                 </footer>;
-//     document.getElementById("hotel-container")appendChild(hotelEl); //change hotel-container to ID instead of class
-
-// // $(document).ready(function () {
+// $(document).ready(function () {
 //   var hotel = $("#hotel-container");
 // function renderHotel(data){
 
