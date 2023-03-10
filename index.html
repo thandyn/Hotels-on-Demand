@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="./assets/css/reset.css">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
   <header>
     <!-- nav -->
@@ -27,8 +29,8 @@
           <a class="is-size-4 navbar-item">
             Favorites
           </a>
-          </div>
         </div>
+      </div>
 
       </div>
     </nav>
@@ -38,25 +40,31 @@
       <div class="field">
         <label class="is-size-4 label">City</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Search for a City">
+          <input class="input" id="search-value" type="text" placeholder="Search for a City">
         </div>
       </div>
       <div class="field is-grouped">
         <div class="control">
-          <button class="button is-link is-success">Submit</button>
+          <button id="submit" class="button is-link is-success">Submit</button>
         </div>
       </div>
     </div>
+    <div class="field is-grouped">
+      <div class="control">
+        <!-- <button class="button is-link is-success">Submit</button> -->
+      </div>
+    </div>
+  </div>
 
-<!-- containers -->
+  <!-- containers -->
 
 
     <div class="p-6 card-container ">
       <div class="columns">
-        <div class=" hotel-container column is-flex-wrap-nowrap">
+        <div id="card-container" class=" hotel-container column is-flex-wrap-nowrap">
 
-
-            <!-- <div class="hotel-card">
+<!-- 
+            <div class="hotel-card">
               <header class="card-header">
                 <p class="card-header-title">
                   Card header
@@ -71,8 +79,8 @@
                 <button class="is-fullwidth is-medium button is-success">Favorite</button>
                 <button class="is-fullwidth is-medium button is-success">Info</button>
               </footer>
-            </div>
-
+            </div> -->
+<!-- 
             <div class="hotel-card">
               <header class="card-header">
                 <p class="card-header-title">
@@ -94,9 +102,9 @@
         </div>
 
         <div class="rest-container column is-flex-wrap-nowrap" >
+<!-- 
 
-
-            <!-- <div class="rest-card">
+            <div class="rest-card">
               <header class="card-header">
                 <p class="card-header-title">
                   Card header
@@ -130,12 +138,12 @@
 
 
         </div>
-      </div>
 
+      </div>
     </div>
-    </div>
-    </div>
-    
-    
+  </div>
+
+<script src="./assets/js/script.js"></script>
 </body>
+
 </html>
