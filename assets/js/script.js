@@ -376,9 +376,47 @@ function renderBackupHotelEl(backupData) {
   }
 }
 
-// function renderHotelEl(){
+function renderRestEl(data) {
+  console.log(data);
+  var restContainer = document.getElementById("rest-container");
+  restContainer.innerHTML = "";
+  for (var i = 0; i < data.length; i++) {
+    if (data[i]) var name = data[i].name;
+    var location = data[i].address;
+    var phone = data[i].phone;
+    var url = data[i].website;
+    var img;
+    if (data[i].photo) {
+      img = data[i].photo.images.original.url;
+    } else {
+      img =
+        "https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg";
+    }
 
-// }
+    console.log(img);
+    var restEl = document.createElement("div");
+    restEl.className = "rest-card";
+    restEl.innerHTML = `
+    <header class="card-header">
+    <p class="card-header-title">
+    ${name}
+    </p>
+    </header>
+    <figure class="image is-4by3">
+    <img src="${img}" alt="restaurant image">
+    </figure>
+    <div class="card-content">
+    <div class="content">
+    <p>${location}</p>
+    <p>${phone}</p>
+    </div>
+    <footer class="card-footer">
+    <button class="is-fullwidth is-medium button is-success">Favorite</button>
+    <a href="${url}" class="is-fullwidth is-medium button is-success">Info</a>
+    </footer>`;
+    restContainer.appendChild(restEl);
+  }
+}
 
 document.getElementById("submit").addEventListener("click", function (e) {
   e.preventDefault();
@@ -398,36 +436,38 @@ document.getElementById("submit").addEventListener("click", function (e) {
     .then((response) => response.json())
     .then((response) => {
       console.log(response);
-      for (var i = 0; i < response.businesses.length; i++) {
-        var nameEl = document.createElement("h1");
-        console.log(response.businesses[i].name);
-
-        var locationEl = document.createElement("h2");
-        var phoneEl = document.createElement("p");
-        // var imgEl = document.createElement ("");
-        var urlEl = document.createElement("p");
-
-        nameEl.textContent = response.businesses[i].name;
-
-        locationEl.textContent =
-          response.businesses[i].location.display_address[0]  + " " +
-          response.businesses[i].location.display_address[1];
-
-        phoneEl.textContent = response.businesses[i].phone
-        urlEl.textContent = response.businesses[i].url
-        // imgEl.textContent = response.businesses[i].
-
-        info.append(nameEl, locationEl, phoneEl, urlEl);
-      }
+      var busiData = response.businesses;
+      var lat = busiData[0].coordinates.latitude;
+      var lon = busiData[0].coordinates.longitude;
+      renderHotelEl(busiData);
+      fetchRestaurant(lat, lon);
     })
-    // info=businesses
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.error(err);
+      console.log("Loading Backup");
+      renderBackupHotelEl(backupData);
+    });
 });
 
-// $(document).ready(function () {
-//   var hotel = $("#hotel-container");
-// function renderHotel(data){
+function fetchRestaurant(lat, lon) {
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "c671075f01mshcac5c7dba6a56ecp16f198jsn6efda25750d9",
+      "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
+    },
+  };
 
-//   hotel.append(name, location, phone, image_url, url);
-// }
-// })
+  fetch(
+    `https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=${lat}&longitude=${lon}&limit=9&currency=USD&distance=2&open_now=false&lang=en_US`,
+    options
+  )
+    .then((response) => response.json())
+    .then((response) => {
+      console.log(response);
+      var restData = response.data;
+      renderRestEl(restData);
+    })
+
+    .catch((err) => console.error(err));
+}
