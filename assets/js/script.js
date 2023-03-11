@@ -314,6 +314,13 @@ document.addEventListener("click", function (event) {
     console.log(hotels[index]);
     var favoriteHotel = hotels[index];
     // store in local storage here ...
+    var savedHotel = JSON.parse(localStorage.getItem("savedHotel")) || [];
+    savedHotel.push(favoriteHotel);
+    localStorage.setItem("savedHotel", JSON.stringify(savedHotel));
+    event.target.classList.remove("is-success");
+    event.target.classList.add("is-info");
+    event.target.textContent = "Saved in Favorites!";
+    event.target.disabled = true;
   }
 });
 document.addEventListener("click", function (event) {
@@ -322,6 +329,13 @@ document.addEventListener("click", function (event) {
     console.log(restaurants[index]);
     var favoriteRestaurant = restaurants[index];
     // store in local storage here...
+    var savedRes = JSON.parse(localStorage.getItem("savedRes")) || [];
+    savedRes.push(favoriteRestaurant);
+    localStorage.setItem("savedRes", JSON.stringify(savedRes));
+    event.target.classList.remove("is-success");
+    event.target.classList.add("is-info");
+    event.target.textContent = "Saved in Favorites!";
+    event.target.disabled = true;
   }
 });
 
@@ -403,7 +417,7 @@ function renderRestEl(data) {
   var restContainer = document.getElementById("rest-container");
   restContainer.innerHTML = "";
   for (var i = 0; i < data.length; i++) {
-    if (data[i]) var name = data[i].name;
+    var name = data[i].name;
     var location = data[i].address;
     var phone = data[i].phone;
     var url = data[i].website;
