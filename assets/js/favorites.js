@@ -8,8 +8,11 @@ function renderHotelEl() {
   hotelContainer.innerHTML = "";
   for (var i = 0; i < (hotel ? hotel.length : 0); i++) {
     var name = hotel[i].name;
-    var location = hotel[i].location.address1;
-    var phone = hotel[i].phone;
+    var location =
+      hotel[i].location.display_address[0] +
+      ", " +
+      hotel[i].location.display_address[1];
+    var phone = hotel[i].display_phone;
     var img = hotel[i].image_url;
 
     var hotelEl = document.createElement("div");

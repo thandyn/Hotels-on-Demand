@@ -346,8 +346,11 @@ function renderHotelEl(busiData) {
   hotelContainer.innerHTML = "";
   for (var i = 0; i < busiData.length; i++) {
     var name = busiData[i].name;
-    var location = busiData[i].location.address1;
-    var phone = busiData[i].phone;
+    var location =
+      busiData[i].location.display_address[0] +
+      ", " +
+      busiData[i].location.display_address[1];
+    var phone = busiData[i].display_phone;
     var url = busiData[i].url;
     var img = busiData[i].image_url;
 
@@ -368,8 +371,8 @@ function renderHotelEl(busiData) {
     <p>${phone}</p>
     </div>
     <footer class="card-footer">
-    <button class="favHotels is-fullwidth is-medium button is-success" data-index="${i}">Favorite</button>
-    <a href="${url}" class="is-fullwidth is-medium button is-success">Info</a>
+    <button class="mx-1 favHotels is-fullwidth is-medium button is-success" data-index="${i}">Favorite</button>
+    <a href="${url}" class="mx-1 is-fullwidth is-medium button is-success">Info</a>
     </footer>`;
     hotelContainer.appendChild(hotelEl);
   }
@@ -382,8 +385,11 @@ function renderBackupHotelEl(backupData) {
   hotelContainer.innerHTML = "";
   for (var i = 0; i < backupData.businesses.length; i++) {
     var name = backupData.businesses[i].name;
-    var location = backupData.businesses[i].location.address1;
-    var phone = backupData.businesses[i].phone;
+    var location =
+      backupData.businesses[i].location.display_address[0] +
+      ", " +
+      backupData.businesses[i].location.display_address[1];
+    var phone = backupData.businesses[i].display_phone;
     var url = backupData.businesses[i].url;
     var img = backupData.businesses[i].image_url;
 
@@ -404,8 +410,8 @@ function renderBackupHotelEl(backupData) {
     <p>${phone}</p>
     </div>
     <footer class="card-footer">
-    <button class="favHotels is-fullwidth is-medium button is-success" data-index="${i}">Favorite</button>
-    <a href="${url}" class="is-fullwidth is-medium button is-success">Info</a>
+    <button class="favHotels mx-1 is-fullwidth is-medium button is-success" data-index="${i}">Favorite</button>
+    <a href="${url}" class="mx-1 is-fullwidth is-medium button is-success">Info</a>
     </footer>`;
     hotelContainer.appendChild(hotelEl);
   }
@@ -447,8 +453,8 @@ function renderRestEl(data) {
     <p>${phone}</p>
     </div>
     <footer class="card-footer">
-    <button class="favRestaurant is-fullwidth is-medium button is-success" data-index="${i}">Favorite</button>
-    <a href="${url}" class="is-fullwidth is-medium button is-success">Info</a>
+    <button class="favRestaurant mx-1 is-fullwidth is-medium button is-success" data-index="${i}">Favorite</button>
+    <a href="${url}" class="mx-1 is-fullwidth is-medium button is-success">Info</a>
     </footer>`;
     restContainer.appendChild(restEl);
   }
