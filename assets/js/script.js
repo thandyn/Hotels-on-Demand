@@ -351,10 +351,10 @@ function renderBackupHotelEl(backupData) {
   for (var i = 0; i < backupData.businesses.length; i++) {
     var name = backupData.businesses[i].name;
     var location =
-      backupData[i].location.display_address[0] + ", " +
-      backupData[i].location.display_address[1] ;
+      backupData.businesses[i].location.display_address[0] + ", " +
+      backupData.businesses[i].location.display_address[1] ;
       // backupData[i].location.display_address[2];
-    var phone = busiData[i].display_phone;
+    var phone = backupData.businesses[i].display_phone;
     var url = backupData.businesses[i].url;
     var img = backupData.businesses[i].image_url;
 
