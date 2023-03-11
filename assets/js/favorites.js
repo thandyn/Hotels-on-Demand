@@ -1,5 +1,5 @@
-var hotel = JSON.parse(localStorage.getItem("savedHotel"))  [];
-var restaurant = JSON.parse(localStorage.getItem("savedRes"))  [];
+var hotel = JSON.parse(localStorage.getItem("savedHotel")) || [];
+var restaurant = JSON.parse(localStorage.getItem("savedRes")) || [];
 console.log(restaurant);
 
 function renderHotelEl() {
@@ -11,10 +11,9 @@ function renderHotelEl() {
     var location = hotel[i].location.address1;
     var phone = hotel[i].phone;
     var img = hotel[i].image_url;
-
     var hotelEl = document.createElement("div");
     hotelEl.className = "hotel-card";
-    hotelEl.innerHTML = 
+    hotelEl.innerHTML = `
       <header class="card-header">
         <p class="card-header-title">
           ${name}
@@ -32,10 +31,12 @@ function renderHotelEl() {
       <footer class="card-footer">
         <button class="remove-hotel is-fullwidth is-medium button is-danger">Remove Favorite</button>
       </footer>
-    ;
+      `;
     hotelContainer.appendChild(hotelEl);
   }
-  function renderRestaurantEl() {
+}
+
+function renderRestaurantEl() {
   var restContainer = document.getElementById("rest-container");
   restContainer.innerHTML = "";
   for (var i = 0; i < restaurant.length; i++) {
@@ -51,7 +52,7 @@ function renderHotelEl() {
 
     var restaurantEl = document.createElement("div");
     restaurantEl.className = "rest-card";
-    restaurantEl.innerHTML = 
+    restaurantEl.innerHTML = `
       <header class="card-header">
         <p class="card-header-title">
           ${name}
@@ -69,7 +70,7 @@ function renderHotelEl() {
       <footer class="card-footer">
         <button class="remove-res is-fullwidth is-medium button is-danger">Remove Favorite</button>
       </footer>
-    ;
+    `;
     restContainer.appendChild(restaurantEl);
   }
 }

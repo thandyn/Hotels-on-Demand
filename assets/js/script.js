@@ -317,10 +317,10 @@ document.addEventListener("click", function (event) {
     var savedHotel = JSON.parse(localStorage.getItem("savedHotel")) || [];
     savedHotel.push(favoriteHotel);
     localStorage.setItem("savedHotel", JSON.stringify(savedHotel));
-    event.target.classList.remove(is-success);
-    event.target.classList.add(is-info);
-    event.target.textContent="saved in favorites!";
-    event.target.disabled: true;
+    event.target.classList.remove("is-success");
+    event.target.classList.add("is-info");
+    event.target.textContent = "Saved in Favorites!";
+    event.target.disabled = true;
   }
 });
 document.addEventListener("click", function (event) {
@@ -332,10 +332,10 @@ document.addEventListener("click", function (event) {
     var savedRes = JSON.parse(localStorage.getItem("savedRes")) || [];
     savedRes.push(favoriteRestaurant);
     localStorage.setItem("savedHotel", JSON.stringify(savedRes));
-    event.target.classList.remove(is-success);
-    event.target.classList.add(is-info);
-    event.target.textContent="saved in favorites!";
-    event.target.disabled: true;
+    event.target.classList.remove("is-success");
+    event.target.classList.add("is-info");
+    event.target.textContent = "Saved in Favorites!";
+    event.target.disabled = true;
   }
 });
 
