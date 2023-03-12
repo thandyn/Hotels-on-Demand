@@ -471,3 +471,4 @@ function fetchRestaurant(lat, lon) {
 
     .catch((err) => console.error(err));
 }
+
