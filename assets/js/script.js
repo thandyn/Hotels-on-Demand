@@ -311,7 +311,6 @@ var hotels = [];
 document.addEventListener("click", function (event) {
   if (event.target.classList.contains("favHotels")) {
     var index = parseInt(event.target.dataset.index);
-    console.log(hotels[index]);
     var favoriteHotel = hotels[index];
     // store in local storage here ...
     var savedHotel = JSON.parse(localStorage.getItem("savedHotel")) || [];
@@ -326,7 +325,6 @@ document.addEventListener("click", function (event) {
 document.addEventListener("click", function (event) {
   if (event.target.classList.contains("favRestaurant")) {
     var index = parseInt(event.target.dataset.index);
-    console.log(restaurants[index]);
     var favoriteRestaurant = restaurants[index];
     // store in local storage here...
     var savedRes = JSON.parse(localStorage.getItem("savedRes")) || [];
@@ -340,7 +338,6 @@ document.addEventListener("click", function (event) {
 });
 
 function renderHotelEl(busiData) {
-  console.log(busiData);
   hotels = busiData;
   var hotelContainer = document.getElementById("hotel-container");
   hotelContainer.innerHTML = "";
@@ -379,7 +376,6 @@ function renderHotelEl(busiData) {
 }
 
 function renderBackupHotelEl(backupData) {
-  console.log(backupData);
   hotels = backupData.businesses;
   var hotelContainer = document.getElementById("hotel-container");
   hotelContainer.innerHTML = "";
@@ -418,11 +414,13 @@ function renderBackupHotelEl(backupData) {
 }
 
 function renderRestEl(data) {
-  console.log(data);
   restaurants = data;
   var restContainer = document.getElementById("rest-container");
   restContainer.innerHTML = "";
   for (var i = 0; i < data.length; i++) {
+    if (i === 4 || i === 11) {
+      continue;
+    }
     var name = data[i].name;
     var location = data[i].address;
     var phone = data[i].phone;
@@ -435,7 +433,6 @@ function renderRestEl(data) {
         "https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg";
     }
 
-    console.log(img);
     var restEl = document.createElement("div");
     restEl.className = "rest-card";
     restEl.innerHTML = `
@@ -504,7 +501,7 @@ function fetchRestaurant(lat, lon) {
   };
 
   fetch(
-    `https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=${lat}&longitude=${lon}&limit=9&currency=USD&distance=2&open_now=false&lang=en_US`,
+    `https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=${lat}&longitude=${lon}&limit=10&currency=USD&distance=2&open_now=false&lang=en_US`,
     options
   )
     .then((response) => response.json())

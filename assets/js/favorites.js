@@ -1,6 +1,5 @@
 var hotel = JSON.parse(localStorage.getItem("savedHotel")) || [];
 var restaurant = JSON.parse(localStorage.getItem("savedRes")) || [];
-console.log(restaurant);
 
 function renderHotelEl() {
   document.getElementById("hotel-container").innerHTML = "";
