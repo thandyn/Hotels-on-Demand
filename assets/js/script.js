@@ -329,7 +329,9 @@ document.addEventListener("click", function (event) {
     // store in local storage here...
     var savedRes = JSON.parse(localStorage.getItem("savedRes")) || [];
     savedRes.push(favoriteRestaurant);
+
     localStorage.setItem("savedRes", JSON.stringify(savedRes));
+
     event.target.classList.remove("is-success");
     event.target.classList.add("is-info");
     event.target.textContent = "Saved in Favorites!";
@@ -344,9 +346,11 @@ function renderHotelEl(busiData) {
   for (var i = 0; i < busiData.length; i++) {
     var name = busiData[i].name;
     var location =
+
       busiData[i].location.display_address[0] +
       ", " +
       busiData[i].location.display_address[1];
+
     var phone = busiData[i].display_phone;
     var url = busiData[i].url;
     var img = busiData[i].image_url;
@@ -382,9 +386,11 @@ function renderBackupHotelEl(backupData) {
   for (var i = 0; i < backupData.businesses.length; i++) {
     var name = backupData.businesses[i].name;
     var location =
+
       backupData.businesses[i].location.display_address[0] +
       ", " +
       backupData.businesses[i].location.display_address[1];
+
     var phone = backupData.businesses[i].display_phone;
     var url = backupData.businesses[i].url;
     var img = backupData.businesses[i].image_url;
