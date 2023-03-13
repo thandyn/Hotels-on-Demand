@@ -12,9 +12,7 @@ The user will be able to use the application to find a hotel in the city they ar
 
 Please refer to the LICENSE in the repo.
 
-
 ## Criteria for Project
-
 
 GIVEN I am taking a trip I want to find the hotels by city and the resturants that are in the same area.
 
