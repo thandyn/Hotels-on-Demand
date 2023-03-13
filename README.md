@@ -36,7 +36,7 @@ WHEN I click to the favorites page THEN I am able to see the hotels and resturan
 
 ## Website Link
 
-[Hotels On Demand]()
+[Hotels On Demand](https://thandyn.github.io/Hotels-on-Demand/)
 
 ## Screen Shots
 
