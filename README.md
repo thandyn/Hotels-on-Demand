@@ -41,4 +41,4 @@ GIVEN I am taking a trip I want to find the hotels by city and the resturants th
 
 ## Screen Shots
 
-![Deployed Website]()
+![Wire Frame](./assets/images/Wire-Frame.JPG)
