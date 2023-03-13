@@ -1,16 +1,23 @@
 var hotel = JSON.parse(localStorage.getItem("savedHotel")) || [];
 var restaurant = JSON.parse(localStorage.getItem("savedRes")) || [];
-console.log(restaurant);
+
+
 
 function renderHotelEl() {
   document.getElementById("hotel-container").innerHTML = "";
   var hotelContainer = document.getElementById("hotel-container");
   hotelContainer.innerHTML = "";
-  for (var i = 0; i < hotel.length; i++) {
+
+  for (var i = 0; i < (hotel ? hotel.length : 0); i++) {
     var name = hotel[i].name;
-    var location = hotel[i].location.address1;
-    var phone = hotel[i].phone;
+    var location =
+      hotel[i].location.display_address[0] +
+      ", " +
+      hotel[i].location.display_address[1];
+    var phone = hotel[i].display_phone;
     var img = hotel[i].image_url;
+
+
     var hotelEl = document.createElement("div");
     hotelEl.className = "hotel-card";
     hotelEl.innerHTML = `
@@ -30,8 +37,9 @@ function renderHotelEl() {
       </div>
       <footer class="card-footer">
         <button class="remove-hotel is-fullwidth is-medium button is-danger">Remove Favorite</button>
-      </footer>
-      `;
+
+      </footer>`;
+
     hotelContainer.appendChild(hotelEl);
   }
 }
@@ -39,7 +47,9 @@ function renderHotelEl() {
 function renderRestaurantEl() {
   var restContainer = document.getElementById("rest-container");
   restContainer.innerHTML = "";
-  for (var i = 0; i < restaurant.length; i++) {
+
+  for (var i = 0; i < (restaurant ? restaurant.length : 0); i++) {
+
     var name = restaurant[i].name;
     var location = restaurant[i].address;
     var phone = restaurant[i].phone;
@@ -74,6 +84,9 @@ function renderRestaurantEl() {
     restContainer.appendChild(restaurantEl);
   }
 }
+
+
+
 document.addEventListener("click", function (e) {
   if (event.target.classList.contains("remove-hotel")) {
     var index = event.target.dataset.index;
