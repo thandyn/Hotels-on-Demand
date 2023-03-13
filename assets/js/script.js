@@ -311,7 +311,6 @@ var hotels = [];
 document.addEventListener("click", function (event) {
   if (event.target.classList.contains("favHotels")) {
     var index = parseInt(event.target.dataset.index);
-    console.log(hotels[index]);
     var favoriteHotel = hotels[index];
     // store in local storage here ...
     var savedHotel = JSON.parse(localStorage.getItem("savedHotel")) || [];
@@ -326,12 +325,13 @@ document.addEventListener("click", function (event) {
 document.addEventListener("click", function (event) {
   if (event.target.classList.contains("favRestaurant")) {
     var index = parseInt(event.target.dataset.index);
-    console.log(restaurants[index]);
     var favoriteRestaurant = restaurants[index];
     // store in local storage here...
     var savedRes = JSON.parse(localStorage.getItem("savedRes")) || [];
     savedRes.push(favoriteRestaurant);
-    localStorage.setItem("savedHotel", JSON.stringify(savedRes));
+
+    localStorage.setItem("savedRes", JSON.stringify(savedRes));
+
     event.target.classList.remove("is-success");
     event.target.classList.add("is-info");
     event.target.textContent = "Saved in Favorites!";
@@ -340,16 +340,17 @@ document.addEventListener("click", function (event) {
 });
 
 function renderHotelEl(busiData) {
-  console.log(busiData);
   hotels = busiData;
   var hotelContainer = document.getElementById("hotel-container");
   hotelContainer.innerHTML = "";
   for (var i = 0; i < busiData.length; i++) {
     var name = busiData[i].name;
     var location =
-      busiData[i].location.display_address[0] + ", " +
+
+      busiData[i].location.display_address[0] +
+      ", " +
       busiData[i].location.display_address[1];
-      // busiData[i].location.display_address[2];
+
     var phone = busiData[i].display_phone;
     var url = busiData[i].url;
     var img = busiData[i].image_url;
@@ -371,24 +372,25 @@ function renderHotelEl(busiData) {
     <p>${phone}</p>
     </div>
     <footer class="card-footer">
-    <button class="favHotels is-fullwidth is-medium button is-success" data-index="${i}">Favorite</button>
-    <a href="${url}" class="is-fullwidth is-medium button is-success">Info</a>
+    <button class="mx-1 favHotels is-fullwidth is-medium button is-success" data-index="${i}">Favorite</button>
+    <a href="${url}" class="mx-1 is-fullwidth is-medium button is-success">Info</a>
     </footer>`;
     hotelContainer.appendChild(hotelEl);
   }
 }
 
 function renderBackupHotelEl(backupData) {
-  console.log(backupData);
   hotels = backupData.businesses;
   var hotelContainer = document.getElementById("hotel-container");
   hotelContainer.innerHTML = "";
   for (var i = 0; i < backupData.businesses.length; i++) {
     var name = backupData.businesses[i].name;
     var location =
-      backupData.businesses[i].location.display_address[0] + ", " +
-      backupData.businesses[i].location.display_address[1] ;
-      // backupData[i].location.display_address[2];
+
+      backupData.businesses[i].location.display_address[0] +
+      ", " +
+      backupData.businesses[i].location.display_address[1];
+
     var phone = backupData.businesses[i].display_phone;
     var url = backupData.businesses[i].url;
     var img = backupData.businesses[i].image_url;
@@ -410,20 +412,22 @@ function renderBackupHotelEl(backupData) {
     <p>${phone}</p>
     </div>
     <footer class="card-footer">
-    <button class="favHotels is-fullwidth is-medium button is-success" data-index="${i}">Favorite</button>
-    <a href="${url}" class="is-fullwidth is-medium button is-success">Info</a>
+    <button class="favHotels mx-1 is-fullwidth is-medium button is-success" data-index="${i}">Favorite</button>
+    <a href="${url}" class="mx-1 is-fullwidth is-medium button is-success">Info</a>
     </footer>`;
     hotelContainer.appendChild(hotelEl);
   }
 }
 
 function renderRestEl(data) {
-  console.log(data);
   restaurants = data;
   var restContainer = document.getElementById("rest-container");
   restContainer.innerHTML = "";
   for (var i = 0; i < data.length; i++) {
-    if (data[i]) var name = data[i].name;
+    if (i === 4 || i === 11) {
+      continue;
+    }
+    var name = data[i].name;
     var location = data[i].address;
     var phone = data[i].phone;
     var url = data[i].website;
@@ -435,7 +439,6 @@ function renderRestEl(data) {
         "https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg";
     }
 
-    console.log(img);
     var restEl = document.createElement("div");
     restEl.className = "rest-card";
     restEl.innerHTML = `
@@ -453,8 +456,8 @@ function renderRestEl(data) {
     <p>${phone}</p>
     </div>
     <footer class="card-footer">
-    <button class="favRestaurant is-fullwidth is-medium button is-success" data-index="${i}">Favorite</button>
-    <a href="${url}" class="is-fullwidth is-medium button is-success">Info</a>
+    <button class="favRestaurant mx-1 is-fullwidth is-medium button is-success" data-index="${i}">Favorite</button>
+    <a href="${url}" class="mx-1 is-fullwidth is-medium button is-success">Info</a>
     </footer>`;
     restContainer.appendChild(restEl);
   }
@@ -504,7 +507,7 @@ function fetchRestaurant(lat, lon) {
   };
 
   fetch(
-    `https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=${lat}&longitude=${lon}&limit=9&currency=USD&distance=2&open_now=false&lang=en_US`,
+    `https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=${lat}&longitude=${lon}&limit=10&currency=USD&distance=2&open_now=false&lang=en_US`,
     options
   )
     .then((response) => response.json())
