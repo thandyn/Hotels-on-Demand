@@ -4,6 +4,15 @@
 
 This application will help the user that is traveling find a hotel for their desired location. This application will also allow the user to see what the best food options are near that hotel. For this application we incorporated two API's with one used to find a hotel by city and the second used to find nearby resturants to that hotel. The user will be able to find where they can stay and where they can eat in this one application.
 
+## Technology 
+
+- HTML: This set up the page for the layout we needed.
+- CSS: This was used to style the page.
+- Javascript: Used to create functionality for search and APIs.
+- Bulma: This was the framework we used.
+- Yelp fusion API: This API returned us the data for the hotels.
+- Travel advisor API: This API returned us the data for the restaurants.
+
 ## Usage
 
 The user will be able to use the application to find a hotel in the city they are traveling too. They will also be able to see what resturants there are around that hotel. This will make it easier for the user to know places they can eat when traveling as well as find a hotel that meets their needs. The user will be able to favorite possible choices to look back at later.
